@@ -15,9 +15,12 @@
 */
 
 .page {
+  position: static;
   margin: 100px auto 100px auto;
   width: calc(100vw * (700 / 1440));
-  color: var(--themes-main-color);
+  max-width: 700px;
+  min-width: 371px;
+  color: var(--themes-main-color, #00cc14);
   font-family: var(--main-font, "Inter-Variable");
   font-variation-settings: "wght" var(--card-content-font-weight);
   background: var(--background);
@@ -35,10 +38,10 @@
   min-width: 371px;
   gap: 25px;
   margin-bottom: 100px;
-  border: 2px solid var(--themes-main-color);
+  border: 2px solid var(--themes-main-color, #00cc14);
   padding: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem) 0 25px 0;
-  font-family: var(--supportable-font);
-  background-color: var(--themes-backgroud-color);
+  font-family: var(--supportable-font, serif);
+  background-color: var(--themes-backgroud-color, #000);
 }
 
 .header__logo {
@@ -87,22 +90,24 @@
 .theme-menu__button::after {
   content: "";
   position: absolute;
+  scale: 0;
   bottom: -3px;
   left: 0;
   display: block;
   width: 0%;
   height: 2px;
-  background-color: var(--themes-main-color);
+  background-color: var(--themes-main-color, #00cc14);
   transition: width 0.5s ease-in-out;
 }
 
-.theme-menu__button:focus-within {
+.theme-menu__button:focus {
   outline: none;
   opacity: 0.6;
 }
 
-.theme-menu__button:focus-within::after {
+.theme-menu__button:focus-visible::after {
   width: 100%;
+  scale: 1;
 }
 
 .theme-menu__button:disabled::before {
@@ -116,6 +121,7 @@
 .theme-menu__button:disabled {
   opacity: 0.6;
   cursor: default;
+  pointer-events: none;
 }
 
 /*СТРАНИЦА*/
@@ -134,14 +140,14 @@ main {
 
 .card {
   min-width: 371px;
-  border: 2px solid var(--themes-main-color);
-  background-color: var(--themes-backgroud-color);
+  border: 2px solid var(--themes-main-color, #00cc14);
+  background-color: var(--themes-backgroud-color, #000);
 }
 
 .card__cover {
   position: relative;
-  border-top: 2px solid var(--themes-main-color);
-  border-bottom: 2px solid var(--themes-main-color);
+  border-top: 2px solid var(--themes-main-color, #00cc14);
+  border-bottom: 2px solid var(--themes-main-color, #00cc14);
 }
 
 .card__cover__image {
@@ -155,28 +161,28 @@ main {
 
 .card__cover__watermark {
   position: absolute;
-  font-family: var(--supportable-font);
+  font-family: var(--supportable-font, serif);
   font-weight: 400;
   font-size: 14px;
   top: 25px;
   right: 25px;
   opacity: 0.8;
-  color: var(--themes-main-color);
-  text-shadow: 0 0 1px var(--themes-backgroud-color);
+  color: var(--themes-main-color, #00cc14);
+  text-shadow: 0 0 1px var(--themes-backgroud-color, #000);
 }
 
 @supports (
   (
-      (text-stroke: 1px var(--themes-backgroud-color)) or
-        (-webkit-text-stroke: 1px var(--themes-backgroud-color))
+      (text-stroke: 1px var(--themes-backgroud-color, #000)) or
+        (-webkit-text-stroke: 1px var(--themes-backgroud-color, #000))
     )
     and (mix-blend-mode: hard-light)
 ) {
   .card__cover__watermark {
     text-shadow: none;
-    text-transform: stroke(1px var(--themes-backgroud-color));
+    text-transform: stroke(1px var(--themes-backgroud-color, #000));
     mix-blend-mode: hard-light;
-    -webkit-text-stroke: 1px var(--themes-backgroud-color);
+    -webkit-text-stroke: 1px var(--themes-backgroud-color, #000);
   }
 }
 
@@ -201,15 +207,15 @@ main {
 /*ФИЛЬТРЫ*/
 
 .image-filter_grayscale {
-  filter: grayscale(0.3);
+  filter: grayscale(0.4);
 }
 
 .image-filter_brightness {
-  filter: brightness(150%);
+  filter: brightness(130%);
 }
 
 .image-filter_contrast {
-  filter: contrast(190%);
+  filter: contrast(90%);
 }
 
 .image-filter_opacity {
@@ -221,7 +227,7 @@ main {
 }
 
 .image-filter_sepia {
-  filter: sepia(90%);
+  filter: sepia(40%);
 }
 
 .image-filter_blur {
@@ -229,44 +235,13 @@ main {
 }
 
 .image-filter_combinate {
-  filter: contrast(900%) blur(0.2rem);
-}
-
-@media (width <= 375px) {
-  .page {
-    margin: 102px 0 102px 0;
-    width: 100%;
-    min-width: 320px;
-  }
-
-  .footer__button {
-    flex-direction: column;
-  }
-
-  .footer__button svg {
-    width: 28px;
-    height: 28px;
-  }
-
-  .dialog {
-    padding: 30px 40px;
-  }
-
-  .floppy-icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .card__cover__watermark {
-    top: 25px;
-    right: 11px;
-  }
+  filter: contrast(200%) blur(0.2rem);
 }
 
 /*КНОПКИ*/
 
 .button__container {
-  background: var(--themes-backgroud-color);
+  background: var(--themes-backgroud-color, #000);
 }
 
 .button {
@@ -274,8 +249,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--themes-main-color);
-  background: var(--themes-backgroud-color);
+  border: 2px solid var(--themes-main-color, #00cc14);
+  background: var(--themes-backgroud-color, #000);
   transition: box-shadow 0.3s ease;
   cursor: pointer;
 }
@@ -287,7 +262,7 @@ main {
 }
 
 .button:focus-visible {
-  box-shadow: 2px 2px var(--themes-main-color);
+  box-shadow: 2px 2px var(--themes-main-color, #00cc14);
   outline: none;
 }
 
@@ -298,7 +273,7 @@ main {
   left: 0;
   width: 0%;
   height: 100%;
-  background-color: var(--themes-main-color);
+  background-color: var(--themes-main-color, #00cc14);
   transition: width 0.5s ease-in-out;
 }
 
@@ -307,11 +282,16 @@ main {
 }
 
 .button__text {
-  font-family: var(--supportable-font);
+  font-family: var(--supportable-font, serif);
   font-weight: 400;
   font-size: 14px;
   line-height: 90%;
-  color: var(--themes-button-text-color);
+  color: var(--themes-button-text-color, #00cc14);
+  transition: none;
+}
+
+.button__text-style {
+  text-transform: uppercase;
 }
 
 .button .button__text {
@@ -319,7 +299,8 @@ main {
 }
 
 .button:hover .button__text {
-  color: var(--themes-backgroud-color);
+  color: var(--themes-backgroud-color, #000);
+  color: var(--themes-button-text-color, #00cc14);
 }
 
 .button svg {
@@ -327,25 +308,14 @@ main {
 }
 
 .button:hover svg {
-  color: var(--themes-backgroud-color);
+  color: var(--themes-backgroud-color, #000);
+  color: var(--themes-button-text-color, #00cc14);
 }
 
 @supports (mix-blend-mode: difference) {
-  .button .button__text {
-    transition: none;
-  }
-
   .button svg {
     transition: none;
     mix-blend-mode: difference;
-  }
-
-  .button:hover .button__text {
-    color: var(--themes-button-text-color);
-  }
-
-  .button:hover svg {
-    color: var(--themes-button-text-color);
   }
 
   .button__text {
@@ -355,14 +325,14 @@ main {
   .floppy-icon {
     mix-blend-mode: difference;
     transition: color 0.5s ease-in-out;
-    color: var(--themes-button-text-color);
+    color: var(--themes-button-text-color, #00cc14);
   }
 }
 
 .floppy-icon {
   width: auto;
   height: auto;
-  color: var(--themes-button-text-color);
+  color: var(--themes-button-text-color, #00cc14);
 }
 
 /*КАРТОЧКИ*/
@@ -390,65 +360,59 @@ main {
   height: 100%;
   top: 0;
   left: 0;
-  outline: 2px solid var(--themes-main-color);
-  outline-offset: -2px;
-  opacity: 0;
   transition: opacity 0.3s ease;
+  opacity: 0;
   z-index: -1;
 }
 
-.card__icon-button:focus-within::before {
+.card__icon-button:focus-visible::before {
+  outline: 2px solid var(--themes-main-color, #00cc14);
+  outline-offset: -2px;
   opacity: 100;
   z-index: 0;
 }
 
 .card__like-button {
-  width: 130px;
+  min-width: 130px;
   min-height: 38px;
   padding: 9px 17px;
 }
 
 /*ДИАЛОГ*/
 
-dialog::backdrop {
-  opacity: 0.75;
-  background: var(--themes-main-color, #000);
-}
-
 .dialog {
-  width: calc(100vw * (352 / 1440));
+  width: calc(100vw * (357 / 1440));
   min-width: 341px;
-  border: 2px solid var(--themes-main-color);
+  max-width: 357px;
+  border: 2px solid var(--themes-main-color, #00cc14);
   padding: 30px;
-  background: var(--themes-backgroud-color);
+  background: var(--themes-backgroud-color, #000);
 }
 
 .dialog__container {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  color: var(--themes-main-color);
+  color: var(--themes-main-color, #00cc14);
 }
 
 .dialog_floppy-icon {
-  width: auto;
-  height: auto;
+  width: 39px;
+  height: 39px;
 }
 
 .dialog__warning {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 20px;
-  font-family: var(--supportable-font);
+  font-family: var(--supportable-font, serif);
   font-size: 14px;
   line-height: 150%;
   text-transform: uppercase;
 }
 
 .dialog__button {
-  justify-content: center;
-  align-items: center;
   gap: 10px;
   width: 100%;
   min-height: 38px;
@@ -456,7 +420,46 @@ dialog::backdrop {
 }
 
 .dialog-text {
-  width: 234px;
+  max-width: 198px;
+}
+
+dialog::backdrop {
+  opacity: 0.75;
+  background: var(--themes-background-color, #000);
+}
+
+@media (width <= 375px) {
+  .page {
+    margin: 102px 0 102px 0;
+    width: 100%;
+  }
+
+  .footer__button {
+    flex-direction: column;
+  }
+
+  .footer__button svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .dialog {
+    padding: 30px 42px;
+  }
+
+  .dialog__container {
+    max-width: 257px;
+  }
+
+  .floppy-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .card__cover__watermark {
+    top: 25px;
+    right: 11px;
+  }
 }
 
 /*ПОДВАЛ*/
@@ -465,3 +468,4 @@ dialog::backdrop {
   display: flex;
   justify-content: center;
 }
+
