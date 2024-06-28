@@ -19,7 +19,7 @@
   margin: 100px auto 100px auto;
   width: calc(100vw * (700 / 1440));
   max-width: 700px;
-  min-width: 371px;
+  min-width: 375px;
   color: var(--themes-main-color, #00cc14);
   font-family: var(--main-font, "Inter-Variable");
   font-variation-settings: "wght" var(--card-content-font-weight);
@@ -27,6 +27,8 @@
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
 }
 
 /*ШАПКА*/
@@ -383,7 +385,6 @@ main {
 .dialog {
   width: calc(100vw * (357 / 1440));
   min-width: 341px;
-  max-width: 357px;
   border: 2px solid var(--themes-main-color, #00cc14);
   padding: 30px;
   background: var(--themes-backgroud-color, #000);
@@ -397,13 +398,14 @@ main {
 }
 
 .dialog_floppy-icon {
-  width: 39px;
+  scale: 1;
+  min-width: 39px;
   height: 39px;
 }
 
 .dialog__warning {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
   font-family: var(--supportable-font, serif);
@@ -420,7 +422,8 @@ main {
 }
 
 .dialog-text {
-  max-width: 198px;
+  min-width: 198px;
+  word-break: break-word;
 }
 
 dialog::backdrop {
@@ -448,7 +451,8 @@ dialog::backdrop {
   }
 
   .dialog__container {
-    max-width: 257px;
+    display: flex;
+    justify-content: start;
   }
 
   .floppy-icon {
@@ -460,6 +464,11 @@ dialog::backdrop {
     top: 25px;
     right: 11px;
   }
+
+  .dialog_floppy-icon {
+    width: 39px;
+    height: 39px;
+  }
 }
 
 /*ПОДВАЛ*/
@@ -468,4 +477,3 @@ dialog::backdrop {
   display: flex;
   justify-content: center;
 }
-
