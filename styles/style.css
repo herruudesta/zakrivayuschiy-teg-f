@@ -27,8 +27,7 @@
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  overflow-x: hidden;
-  -ms-overflow-style: none;
+  -ms-overflow-style: none; 
 }
 
 /*ШАПКА*/
@@ -383,8 +382,7 @@ main {
 /*ДИАЛОГ*/
 
 .dialog {
-  width: calc(100vw * (357 / 1440));
-  min-width: 341px;
+  width: 353px;
   border: 2px solid var(--themes-main-color, #00cc14);
   padding: 30px;
   background: var(--themes-backgroud-color, #000);
@@ -431,6 +429,12 @@ dialog::backdrop {
   background: var(--themes-background-color, #000);
 }
 
+@media (width <= 390px) {
+  .dialog {
+    max-width: 353px;
+  }
+}
+
 @media (width <= 375px) {
   .page {
     margin: 102px 0 102px 0;
@@ -447,7 +451,8 @@ dialog::backdrop {
   }
 
   .dialog {
-    padding: 30px 42px;
+    padding: 30px 40px;
+    width: 341px;
   }
 
   .dialog__container {
